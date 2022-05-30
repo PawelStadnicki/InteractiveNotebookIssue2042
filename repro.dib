@@ -40,7 +40,7 @@ all |> Array.take 5 |> Array.map (fun x -> x.Attributes["BETREIBER"].ToString())
 #!fsharp
 
 let fs =
-     """D:\data\citylla\cities\vienna\all\kindergarder.geojson"""
+     """D:\data\citylla\cities\vienna\all\kindergartens.geojson"""
      |> File.ReadAllText
      |> FeatureReader.readCollection
 
