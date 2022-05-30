@@ -1,0 +1,26 @@
+#!fsharp
+
+#r "nuget:NetTopologySuite.IO.GeoJSON4STJ,2.1.1"
+open NetTopologySuite.IO
+open NetTopologySuite.Features
+open System.Linq
+open System.Text.Json
+
+let opt = System.Text.Json.JsonSerializerOptions()
+opt.ReadCommentHandling <- System.Text.Json.JsonCommentHandling.Skip 
+opt.Converters.Add(NetTopologySuite.IO.Converters.GeoJsonConverterFactory())
+
+let content = 
+    """kindergartens.geojson"""        
+    |> File.ReadAllText
+let data =  JsonSerializer.Deserialize<FeatureCollection>(content, opt)
+
+#!fsharp
+
+// this will fail on first run but will after rerun of the first cell ?
+data.[100].Attributes.["OBJECTID"]
+
+#!fsharp
+
+// run this cell if the previous one is still running and cannot be killed
+data.[100].Attributes.["OBJECTID"]
