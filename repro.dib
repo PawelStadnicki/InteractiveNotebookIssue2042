@@ -1,0 +1,122 @@
+#!fsharp
+
+#r "nuget:FlorenceInteractive"
+#r "nuget:CityPointTypeProvider"
+#r "nuget:FSharp.Data"
+
+#!fsharp
+
+#r "nuget:NetTopologySuite.IO.GeoJSON,2.0.4"
+open NetTopologySuite.IO
+open NetTopologySuite.Features
+open System.Linq
+
+#!fsharp
+
+let reader = GeoJsonReader()
+
+let content = 
+    """kindergartens.geojson"""        
+    |> File.ReadAllText
+
+let all = reader.Read<FeatureCollection>(content).ToArray()
+all.[0].Attributes["BETREIBER"].ToString()
+
+#!fsharp
+
+// works with  1.0.3175020 (2 months ago)
+all.[100].Attributes["BETREIBER"].ToString()
+
+//but with latest 1.0.3256010 (runs forever or says 'all' is not defined until reload of the package)
+
+#!fsharp
+
+all |> Array.take 5 |> Array.map (fun x -> x.Attributes["BETREIBER"].ToString())
+
+#!fsharp
+
+#!about
+
+#!fsharp
+
+let fs =
+     """D:\data\citylla\cities\vienna\all\kindergarder.geojson"""
+     |> File.ReadAllText
+     |> FeatureReader.readCollection
+
+#!fsharp
+
+fs.[0]
+
+#!fsharp
+
+here
+
+#!fsharp
+
+#!generate
+
+#!fsharp
+
+kindergarder.[0].Data.Betreiber
+
+#!fsharp
+
+open Florence
+
+#!fsharp
+
+let reader = Florence.FeatureReader.readCollection content
+//let fc = reader.rand(5000)
+//let raw = fc.toRawGeojson()
+//File.WriteAllText("""D:\data\citylla\cities\newyork\split\test.geojson""", raw)
+
+#!fsharp
+
+pow.[100].Data.Name
+
+#!fsharp
+
+unit_stadtbezirke[3].Feature.location()
+
+#!fsharp
+
+here
+
+#!fsharp
+
+#!address.picker 
+
+#!javascript
+
+console.log("ss");
+
+#!fsharp
+
+raw123
+
+#!fsharp
+
+#!get.selected.addresses
+
+#!fsharp
+
+Lifespace.Leo
+
+#!fsharp
+
+let distances = LifespaceDistance(18.8, 17.8)
+
+#!fsharp
+
+distances.Chris
+
+#!fsharp
+
+let data =
+    kindergarder
+    |> Ranker.rank ( fun place -> 
+        let team = place.Feature.location() |> LifespaceDistance
+        team.Barbara + 2. * team.Anders - 3. * team.Diego
+    )
+data.top 10
